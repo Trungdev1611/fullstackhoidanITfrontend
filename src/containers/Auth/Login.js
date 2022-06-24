@@ -6,7 +6,7 @@ import './Login.scss';
 // import { FormattedMessage } from 'react-intl';
 import { useState } from 'react';
 import * as userSevice from './../../services/userService'
-function Login() {
+function Login(props) {
 
 
     const [login, setLogin] = useState({ username: '', password: '' })
@@ -23,6 +23,7 @@ function Login() {
         let apirest = null
         try {
             apirest = await userSevice.handleLoginservice(login.username, login.password)
+            props.userLoginSuccess(apirest.data.user)
 
         } catch (error) {
             console.log('chay vao day')
@@ -78,8 +79,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        // adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
+        // userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo))
     };
 };
 
