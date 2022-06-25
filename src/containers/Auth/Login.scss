@@ -34,3 +34,18 @@
 
 
 }
+
+table {
+    width: 100%;
+    & button {
+        outline: none;
+        border: 1px solid #ccc;
+        margin: 4px;
+    }
+    
+}
+table, tr, th, td {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px
+}
